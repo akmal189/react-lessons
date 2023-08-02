@@ -1,0 +1,27 @@
+.sideBar {
+    width: 300px;
+    flex: none;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-right: 40px;
+}
+.sideBar ul {
+    margin: 0;
+    padding: 0;
+}
+.sideBar li {
+    list-style-type: none;
+}
+.sideBar li a {
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+.sideBar li a:hover, .sideBar li a.active {
+    color: red;
+}

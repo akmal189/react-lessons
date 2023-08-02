@@ -1,0 +1,23 @@
+h1 {
+    font-size: 34px;
+    font-weight: bold;
+    color: red;
+}
+
+.item {
+    padding: 10px;
+    box-sizing: border-box;
+    background: #000;
+    color: #fff;
+}
+.test {
+    width: 50px;
+    height: 50px;
+    background:green;
+}
+.test.active {
+    width: 50%;
+}
+.content {
+    flex: auto;
+}
