@@ -29,7 +29,7 @@ const Dialogs = () => {
 
     return (
         <div className={classes.dialogs}>
-            <h1>Диалоги</h1>
+            <h1>Диалоги </h1>
             <div className={classes.dialogsInner}>
                 <div className={classes.dialogsList}>
                     {dialogsData.forEach(function(item){
