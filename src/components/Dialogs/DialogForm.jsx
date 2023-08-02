@@ -9,14 +9,20 @@ const DialogForm = (props) => {
 
     let addDialog = () => {
         props.addDialog(5, formName.current.value, formText.current.value)
-        formName.current.value = '';
+        state.dialogPage.defaultValue = '';
         formText.current.value = '';
+    }
+
+    let onDialogChange = () => {
+        let name = formName.current.value;
+        state.dialogPage.defaultValue = name;
+        props.updateNewDialog(name)
     }
     
     return (
         <div className={classes.DialogForm}>
             <div className={classes.formField}>
-                <input type="text" placeholder="Имя"  ref={formName}/>
+                <input type="text" placeholder="Имя"  ref={formName} onChange={onDialogChange} value={props.defaultValue}/>
             </div>
             <div className={classes.formField}>
                 <textarea type="text" placeholder="Текст" ref={formText}></textarea>

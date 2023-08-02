@@ -25,7 +25,7 @@ const Dialogs = (props) => {
                     }
                 </div>
             </div>
-            <DialogForm addDialog={props.addDialog}/>
+            <DialogForm addDialog={props.addDialog} defaultValue={props.defaultValue} updateNewDialog={props.updateNewDialog}/>
         </div>
     );
 }

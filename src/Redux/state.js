@@ -1,24 +1,35 @@
-import { rerenderTree } from "../render"
+let rerenderTree = () => {
+    console.log(123)
+}
 
 let state = {
-    dialogsData: [
-        { id: 1, name: 'Саня', message: 'Здарова Саня' },
-        { id: 2, name: 'Катя', message: 'Здарова Катя' },
-        { id: 3, name: 'Паша', message: 'Здарова Паша' },
-        { id: 4, name: 'Ваня', message: 'Здарова Ваня' },
-    ]
+    dialogPage: {
+        dialogsData: [
+            { id: 1, name: 'Саня', message: 'Здарова Саня' },
+            { id: 2, name: 'Катя', message: 'Здарова Катя' },
+            { id: 3, name: 'Паша', message: 'Здарова Паша' },
+            { id: 4, name: 'Ваня', message: 'Здарова Ваня' },
+        ],
+        defaultValue: ''
+    }
 }
 
 
 export let addDialog = (dialogId, dialogName, dialogMessage) => {
-    console.log(dialogName)
-    state.dialogsData.push({
+    state.dialogPage.dialogsData.push({
         id: dialogId,
         name: dialogName,
         message: dialogMessage
     })
-    console.log(state)
     rerenderTree(state);
 }
 
+export let updateNewDialog = (newName) => {
+    state.dialogPage.defaultValue = newName;
+    rerenderTree(state);
+}
+
+export const subscribe = (observer) => {
+    rerenderTree = observer;
+} 
 export default state;
