@@ -8,7 +8,8 @@ import About from './components/About us/About';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dialogs from './components/Dialogs/Dialogs';
 
-const App = () => {
+const App = (props) => {
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -20,7 +21,7 @@ const App = () => {
                             <Route path="/" element={<Content />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/contacts" element={<Contacts />} />
-                            <Route path="/dialogs" element={<Dialogs />} />
+                            <Route path="/dialogs" element={<Dialogs dialogsData={props.dialogsData} addDialog={props.addDialog}/>} />
                         </Routes>
                     </div>
                 </div>

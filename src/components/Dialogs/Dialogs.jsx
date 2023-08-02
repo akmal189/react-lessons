@@ -1,46 +1,31 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
-import { NavLink } from 'react-router-dom';
+import DialogItem from './DialogItem';
+import MessageItem from './MessagesItem';
+import DialogForm from './DialogForm';
 
-const DialogItem = (props) => {
-    let path = "/dialogs/"+props.id;
-    return (
-        <div className={classes.dialogsItem}>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
-}
-
-const MessageItem = (props) => {
-    return (
-        <div className={classes.dialogsMessages}>
-            {props.text}
-        </div>
-    )
-}
-
-const Dialogs = () => {
-    let dialogsData = [
-        {id: 1, name: 'Саня', message: 'Здарова Саня'},
-        {id: 2, name: 'Катя', message: 'Здарова Катя'},
-        {id: 3, name: 'Паша', message: 'Здарова Паша'},
-        {id: 4, name: 'Ваня', message: 'Здарова Ваня'},
-    ]
+const Dialogs = (props) => {
 
     return (
         <div className={classes.dialogs}>
             <h1>Диалоги </h1>
             <div className={classes.dialogsInner}>
                 <div className={classes.dialogsList}>
-                    {dialogsData.forEach(function(item){
-                        <DialogItem name={item.name} id={item.id}/>
-                        console.log(item)
-                    })}
+                    {
+                        props.dialogsData.map((el) => {
+                            return <DialogItem name={el.name} id={el.id} key={el.id}/>
+                        })
+                    }
                 </div>
                 <div className={classes.dialogsMessages}>
-                    <MessageItem text="Привет Саня"/>
+                    {
+                        props.dialogsData.map((el) => {
+                            return <MessageItem text={el.message} key={el.id}/>
+                        })
+                    }
                 </div>
             </div>
+            <DialogForm addDialog={props.addDialog}/>
         </div>
     );
 }

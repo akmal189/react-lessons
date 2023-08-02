@@ -20,3 +20,6 @@
 .dialogsItem a:hover {
     color: green;
 }
+.dialogsMessages {
+    margin-bottom: 10px;
+}
