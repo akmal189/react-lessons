@@ -10,12 +10,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 let rerenderTree = (store) => {
     root.render(
         <React.StrictMode>
-            <App dialogsData={store.getState().dialogPage.dialogsData} addDialog={store.addDialogFn.addDialog} defaultValue={store.getState().dialogPage.defaultValueFn} updateNewDialog={store.updateNewDialogFn.updateNewDialog}/>
+            <App dialogsData={store.getState().dialogPage.dialogsData} dispatch={store.dispatchEvent.bind(store)}/>
         </React.StrictMode>
     );
 }
 
-store.subscribeFn.subscribe(rerenderTree)
+//store.subscribeFn.subscribe(rerenderTree)
+store.dispatchEvent({'type': 'subscribe', 'observer': rerenderTree});
 
 rerenderTree(store);
 

@@ -1,5 +1,5 @@
 let rerenderTree = () => {
-    console.log(123)
+    console.log('asd')
 }
 
 let store = {
@@ -17,25 +17,20 @@ let store = {
     getState() {
         return this._state;
     },
-    addDialogFn: {
-        addDialog(dialogId, dialogName, dialogMessage) {
+    dispatchEvent(action) {
+        if(action.type === 'add-dialog') {
             store.getState().dialogPage.dialogsData.push({
-                id: dialogId,
-                name: dialogName,
-                message: dialogMessage
+                id: action.id,
+                name: action.name,
+                message: action.message
             })
             rerenderTree(store);
-        }
-    },
-    updateNewDialogFn: {
-        updateNewDialog(newName) {
-            store.getState().dialogPage.defaultValue = newName;
+            console.log(store)
+        } else if (action.type === 'update-dialog') {
+            store.getState().dialogPage.defaultValue = action.newName;
             rerenderTree(store);
-        }
-    },
-    subscribeFn: {
-        subscribe(observer) {
-            rerenderTree = observer;
+        } else if (action.type === 'subscribe') {
+            rerenderTree = action.observer;
         }
     }
 }
