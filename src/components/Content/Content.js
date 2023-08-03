@@ -3,6 +3,14 @@ import classes from './Content.module.css';
 import Post from '../Post/Post'
 
 const Content = () => {
+  let asd = {
+    age: 123,
+    name: 'asd',
+    fn(){
+      console.log(this.age)
+    }
+  }
+  asd.fn()
   return (
     <div>
       <h1>Content 1</h1>

@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './Dialogs.module.css'
-import state from "../../Redux/state";
+import store from "../../Redux/state";
 
 const DialogForm = (props) => {
 
@@ -9,13 +9,13 @@ const DialogForm = (props) => {
 
     let addDialog = () => {
         props.addDialog(5, formName.current.value, formText.current.value)
-        state.dialogPage.defaultValue = '';
+        store.getState().dialogPage.defaultValue = '';
         formText.current.value = '';
     }
 
     let onDialogChange = () => {
         let name = formName.current.value;
-        state.dialogPage.defaultValue = name;
+        store.getState().dialogPage.defaultValue = name;
         props.updateNewDialog(name)
     }
     
