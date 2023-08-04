@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './Dialogs.module.css';
 import DialogPageItems from "./DialogPageItems";
-import store from "../../Redux/state";
+import store from "../../Redux/store";
 
 const DialogPage = (props) => {
     let messageBody = React.createRef();
@@ -15,6 +15,7 @@ const DialogPage = (props) => {
         messageBody.current.value = ''
         store._state.dialogPage.dialogPageMessageValue = ''
     }
+    let newMessageBody = store.getState().dialogPage.dialogPageMessageValue;
     return (
         <div className={classes.dialogPage}>
             <h1>{props.title}</h1>
@@ -43,7 +44,7 @@ const DialogPage = (props) => {
             </div>
             <div className={classes.messageForm}>
                 <div className={classes.messageBody}>
-                    <textarea ref={messageBody} onChange={onMessageBodyChange}></textarea>
+                    <textarea ref={messageBody} onChange={onMessageBodyChange} placeholder="Enter your message" value={newMessageBody}></textarea>
                 </div>
                 <div className={classes.sendBtn}>
                     <button onClick={sendMessage}>Send</button>

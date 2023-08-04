@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './Dialogs.module.css'
-import store from "../../Redux/state";
+import store from "../../Redux/store";
 
 const DialogForm = (props) => {
 
