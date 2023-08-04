@@ -7,17 +7,34 @@ const DialogForm = (props) => {
     let formName = React.createRef(),
         formText = React.createRef();
 
+    let updateDialogActionCreator = () => {
+        let name = formName.current.value;
+        return {
+            type: 'update-dialog', 
+            newName: name
+        }
+    }
+    let addDialogActionCreator = () => {
+        return {
+            'type': 'add-dialog', 
+            'id': 5, 
+            'name': formName.current.value, 
+            'message': formText.current.value
+        }
+    }
+
     let addDialog = () => {
         //props.addDialog(5, formName.current.value, formText.current.value)
-        props.dispatch({'type': 'add-dialog', 'id': 5, 'name': formName.current.value, 'message': formText.current.value});
+        props.dispatch(addDialogActionCreator());
         store.getState().dialogPage.defaultValue = '';
+        formName.current.value = '';
         formText.current.value = '';
     }
 
     let onDialogChange = () => {
         let name = formName.current.value;
         store.getState().dialogPage.defaultValue = name;
-        props.dispatch({type: 'update-dialog', newName: name})
+        props.dispatch(updateDialogActionCreator())
         //props.updateNewDialog(name)
     }
     
