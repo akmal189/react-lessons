@@ -14,10 +14,13 @@ const Sidebar = () => {
                         <NavLink to="/about" className={navData => navData.isActive ? classes.active : classes.item}>О компании</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/contacts" className={navData => navData.isActive ? classes.active : classes.item}>Контакты</NavLink>
+                        <NavLink to="/profile" className={navData => navData.isActive ? classes.active : classes.item}>Profile</NavLink>
                     </li>
                     <li>
                         <NavLink to="/dialogs" className={ navData => navData.isActive ? classes.active : classes.item }>Диалоги</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dialogs2" className={ navData => navData.isActive ? classes.active : classes.item }>Диалоги 2</NavLink>
                     </li>
                 </ul>
             </nav>
