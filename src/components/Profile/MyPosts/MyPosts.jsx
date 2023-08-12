@@ -6,14 +6,17 @@ const MyPosts = (props) => {
 
     let newPostElement = React.createRef();
     let addPost = () => {
-        let text = newPostElement.current.value;
+        props.addPost()
     }
-
+    let onPostChange = () => {
+        let text = newPostElement.current.value;
+        props.updateNewPostText(text)
+    }
     return (
         <div className={classes.Profile}>
             <div className={classes.PostAddForm}>
                 <div className={classes.messageBody}>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea ref={newPostElement} value={props.state.profilePage.defaultMessageValue} onChange={onPostChange}></textarea>
                 </div>
                 <button onClick={addPost}>Add post</button>
             </div>
