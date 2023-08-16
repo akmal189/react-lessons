@@ -11,7 +11,10 @@ const DialogItem = (props) => {
     return (
         <div className={classes.dialogsItem}>
             <a href="javascript:void(0);" className={classes.dialogCloser} onClick={closeDialogue} data-id={props.id}>x</a>
-            <NavLink to={path}>{props.name}</NavLink>
+            <NavLink to={path}>
+                <b>{props.name}</b>
+                {props.message}
+            </NavLink>
         </div>
     )
 }

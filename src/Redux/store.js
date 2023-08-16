@@ -1,4 +1,4 @@
-import dialogsReducer from "./dialogReducer";
+//import dialogsReducer from "./dialogReducer";
 let rerenderTree = () => {
     console.log('asd')
 }
@@ -29,7 +29,7 @@ let store = {
     },
     dispatchEvent(action) {
 
-        this._state.dialogPage = dialogsReducer(this._state.dialogPage, action);
+        //this._state.dialogPage = dialogsReducer(this._state.dialogPage, action);
         if (action.type === 'subscribe') {
             rerenderTree = action.observer;
         }

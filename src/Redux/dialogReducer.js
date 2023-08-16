@@ -1,4 +1,4 @@
-let initialState = {
+/*let initialState = {
     dialogsData: [
         { id: 1, name: 'Саня', message: 'Здарова Саня' },
         { id: 2, name: 'Катя', message: 'Здарова Катя' },
@@ -79,6 +79,56 @@ const dialogsReducer = (state = initialState, action) => {
         default: 
             return state;
     }
+}
+
+export default dialogsReducer;*/
+
+
+const updateNewMessageText = 'newMessageText';
+const UPDATE_DIALOG_MESSAGE = 'updateDialogMessage';
+const ADD_DIALOG = 'add_dialog';
+
+let initialState = {
+    newMessageText: '',
+    newDialogMessage: '',
+    messages: [
+        { id: 1, message: 'Hi' },
+        { id: 2, message: 'Hello' },
+        { id: 3, message: 'Dorou' }
+    ],
+    dialogs: [
+        { id: 1, name: 'Alex', message: 111 },
+        { id: 2, name: 'Tony', message: 22 },
+        { id: 3, name: '3333', message: 3 }
+    ]
+}
+
+const dialogsReducer = (state = initialState, action) => {
+
+    switch (action.type) {
+        case updateNewMessageText:
+            state.newMessageText = action.newMessage;
+
+            return state;
+        case UPDATE_DIALOG_MESSAGE:
+            state.newDialogMessage = action.newMessage;
+
+            return state;
+        case ADD_DIALOG:
+            let dialog_name = state.newMessageText;
+            let dialog_message = state.newDialogMessage;
+
+            state.newMessageText = '';
+            state.newDialogMessage = '';
+            state.dialogs.push({ 'id': 6, 'name': dialog_name })
+            state.messages.push({ 'id': 6, 'message': dialog_message })
+
+            return state;
+        default:
+            return state;
+    }
+
+
 }
 
 export default dialogsReducer;

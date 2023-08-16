@@ -1,22 +1,14 @@
 import React from "react";
-import classes from './Dialogs.module.css'
-import store from "../../Redux/store";
+import classes from './Dialogs.module.css';
 
 const DialogForm = (props) => {
 
     let formName = React.createRef(),
         formText = React.createRef();
 
-    let updateDialogActionCreator = () => {
-        let name = formName.current.value;
-        return {
-            type: 'update-dialog', 
-            newName: name
-        }
-    }
     let addDialogActionCreator = () => {
         return {
-            'type': 'add-dialog', 
+            'type': 'add_dialog', 
             'id': 5, 
             'name': formName.current.value, 
             'message': formText.current.value
@@ -26,25 +18,31 @@ const DialogForm = (props) => {
     let addDialog = () => {
         //props.addDialog(5, formName.current.value, formText.current.value)
         props.dispatch(addDialogActionCreator());
-        store.getState().dialogPage.defaultValue = '';
-        formName.current.value = '';
-        formText.current.value = '';
+        props.state.getState().dialogsPage.newMessageText = '';
+        props.state.getState().dialogsPage.newDialogMessage = '';
     }
 
-    let onDialogChange = () => {
-        let name = formName.current.value;
-        store.getState().dialogPage.defaultValue = name;
-        props.dispatch(updateDialogActionCreator())
+    let onDialogChange = (e) => {
+        let name = e.target.value;
+        props.state.getState().dialogsPage.newMessageText = name;
+        props.dispatch({'type':'newMessageText','newMessage':name})
         //props.updateNewDialog(name)
     }
     
+    let onDialogChange2 = (e) => {
+        let text = e.target.value;
+        props.state.getState().dialogsPage.newDialogMessage = text;
+        props.dispatch({'type':'updateDialogMessage','newMessage':text})
+        //props.updateNewDialog(name)
+    }
+
     return (
         <div className={classes.DialogForm}>
             <div className={classes.formField}>
-                <input type="text" placeholder="Имя"  ref={formName} onChange={onDialogChange} value={props.defaultValue}/>
+                <input type="text" placeholder="Имя"  ref={formName} onChange={onDialogChange} value={props.state.dialogsPage.newMessageText}/>
             </div>
             <div className={classes.formField}>
-                <textarea type="text" placeholder="Текст" ref={formText}></textarea>
+                <textarea type="text" placeholder="Текст" ref={formText} onChange={onDialogChange2} value={props.state.dialogsPage.newDialogMessage}></textarea>
             </div>
             <div className={classes.formField}>
                 <button onClick={addDialog}>Добавить</button>

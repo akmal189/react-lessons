@@ -1,31 +1,27 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
-import DialogItem from './DialogItem2';
+import DialogItem2 from './DialogItem2';
 import MessageItem from './MessagesItem2';
 import DialogForm from './DialogForm2';
 
 const Dialogs = (props) => {
+console.log(props.state)
+    let dialogsElements = props.state.dialogsPage.dialogs.map(d => <DialogItem2 name={d.name} id={d.id}/>)
+    let messageElements = props.state.dialogsPage.messages.map(d => <DialogItem2 message={d.message} id={d.id}/>)
+
 
     return (
         <div className={classes.dialogs}>
             <h1>Диалоги </h1>
             <div className={classes.dialogsInner}>
                 <div className={classes.dialogsList}>
-                    {
-                        props.state.dialogsPage.dialogs.map((el) => {
-                            return <DialogItem name={el.name} id={el.id} key={el.id} dispatch={props.dispatch}/>
-                        })
-                    }
+                    {dialogsElements}
                 </div>
                 <div className={classes.dialogsMessages}>
-                    {
-                        props.state.dialogsPage.messages.map((el) => {
-                            return <MessageItem text={el.message} key={el.id}/>
-                        })
-                    }
+                    {messageElements}
                 </div>
             </div>
-            <DialogForm dispatch={props.dispatch} addDialog={props.addDialog} defaultValue={props.defaultValue} updateNewDialog={props.updateNewDialog}/>
+            <DialogForm state={props.state} dispatch={props.dispatch} addDialog={props.addDialog} defaultValue={props.defaultValue} updateNewDialog={props.updateNewDialog}/>
         </div>
     );
 }
